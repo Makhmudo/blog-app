@@ -9,8 +9,21 @@
 </head>
 <body>
     <header>
-        <h1><a href="{% url 'home' %}">Django Blog</a></h1>
+        <div class="nav-left">
+            <h1><a href="{% url 'home' %}">Django Blog</a></h1>
+        </div>
+        <div class="nav-right">
+            <h1><a href="{% url 'post_new' %}">Create new blog post</a></h1>
+        </div>
     </header>
+    {% if user.is_authenticated %}
+        <p>Hi {{ user.username }}</p>
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
+    {% else %}
+        <p>You are not logged in </p>
+        <a href="{% url 'login' %}">Login</a>
+
+    {% endif %}
     <div>
         {% block content %}
 
